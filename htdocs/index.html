@@ -5,31 +5,85 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>合同会社ふふむ</title>
   <style>
-    body {
+     body {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
       min-height: 100vh;
       margin: 0;
       background-color: #ffffff; /* 背景色はお好みで変更してください */
     }
 
-    .logo-container {
-      /* ロゴのスタイルをここに記述 */
+    #logo-section {
+      margin-top: 20px;
+      text-align: center;
     }
 
-    .logo {
-      /* ロゴ画像のスタイルをここに記述 */
+    #logo-section .logo {
       max-width: 300px; /* ロゴの最大幅を設定 */
       max-height: 200px; /* ロゴの最大高さを設定 */
       width: auto;
       height: auto;
     }
+
+    #company-overview {
+      margin-top: 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    #company-overview h2 {
+      text-align: center;
+      font-size: 24px;
+      color: #333;
+    }
+
+    #company-overview table {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      border-collapse: collapse;
+      border: 1px solid #ddd;
+    }
+
+    #company-overview th, #company-overview td {
+      padding: 10px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+
+    #company-overview th {
+      background-color: #f4f4f4;
+      font-weight: bold;
+    }
+
+    #company-overview td {
+      background-color: #fff;
+    } 
   </style>
 </head>
 <body>
-  <div class="logo-container">
+  <section id="logo-section">
     <img src="images/logo.png" alt="ロゴ" class="logo"> 
-  </div>
+  </section>
+  
+  <section id="company-overview">
+    <h2>企業概要</h2>
+    <table>
+      <tr>
+        <th>法人名</th>
+        <td>合同会社ふふむ</td>
+      </tr>
+      <tr>
+        <th>設立年月日</th>
+        <td>2025年3月3日</td>
+      </tr>
+      <tr>
+        <th>住所</th>
+        <td>〒220-0004 横浜市⻄区北幸二丁目10番48号むつみビル3階</td>
+      </tr>
+    </table>
+  </section>
+  
+
 </body>
 </html>

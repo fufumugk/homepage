@@ -4,32 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>合同会社ふふむ</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      background-color: #ffffff; /* 背景色はお好みで変更してください */
-    }
-
-    .logo-container {
-      /* ロゴのスタイルをここに記述 */
-    }
-
-    .logo {
-      /* ロゴ画像のスタイルをここに記述 */
-      max-width: 300px; /* ロゴの最大幅を設定 */
-      max-height: 200px; /* ロゴの最大高さを設定 */
-      width: auto;
-      height: auto;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css"> <!-- 外部CSSファイルをリンク -->
 </head>
 <body>
-  <div class="logo-container">
+  <section id="logo-section">
     <img src="images/logo.png" alt="ロゴ" class="logo"> 
-  </div>
+  </section>
+  
+  <section id="company-overview">
+    <h2>企業概要</h2>
+    <table>
+      <tr>
+        <th>法人名</th>
+        <td>合同会社ふふむ</td>
+      </tr>
+      <tr>
+        <th>設立年月日</th>
+        <td>2025年3月3日</td>
+      </tr>
+      <tr>
+        <th>住所</th>
+        <td>〒220-0004 横浜市⻄区北幸二丁目10番48号むつみビル3階</td>
+      </tr>
+    </table>
+  </section>
+
+  <footer id="footer">
+    <p>&copy; 2025 合同会社ふふむ. All rights reserved.</p>
+  </footer>
 </body>
 </html>

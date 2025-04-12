@@ -16,15 +16,18 @@ const posts = (await getCollection('blog')).sort(
         <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
         <style>
             body {
+                margin: 0;
+                background-color: #FFFFFF; /* 背景色を白に変更 */
+                font-family: Arial, sans-serif;
+            }
+            .hero {
                 display: flex;
-                flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 min-height: 100vh;
-                margin: 0;
-                background-color: #FFFFFF; /* 背景色を白に変更 */
+                background-color: #FFFFFF;
             }
-            img {
+            .hero img {
                 max-width: 300px; /* ロゴの最大幅を設定 */
                 max-height: 200px; /* ロゴの最大高さを設定 */
                 width: auto;
@@ -33,6 +36,7 @@ const posts = (await getCollection('blog')).sort(
             .blog-list {
                 margin-top: 20px;
                 text-align: center;
+                padding: 20px;
             }
             .blog-list ul {
                 list-style: none;
@@ -48,10 +52,22 @@ const posts = (await getCollection('blog')).sort(
             .blog-list a:hover {
                 text-decoration: underline;
             }
+            footer {
+                text-align: center;
+                padding: 10px;
+                background-color: #F8F9FA;
+                font-size: 14px;
+                color: #6C757D;
+                position: relative;
+                bottom: 0;
+                width: 100%;
+            }
         </style>
     </head>
     <body>
-        <img src="/images/logo.png" alt="合同会社ふふむのロゴ" />
+        <section class="hero">
+            <img src="/images/logo.png" alt="合同会社ふふむのロゴ" />
+        </section>
         <section class="blog-list">
             <h2>お知らせ</h2>
             <ul>
@@ -68,4 +84,7 @@ const posts = (await getCollection('blog')).sort(
             </ul>
         </section>
     </body>
+    <footer>
+        <p>&copy; 2025 合同会社ふふむ. All rights reserved.</p>
+    </footer>
 </html>

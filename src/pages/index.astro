@@ -1,0 +1,99 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { getCollection } from 'astro:content';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+
+const posts = (await getCollection('blog')).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+        <style>
+            .body {
+                margin: 0;
+                background-color: #FFFFFF; /* 背景色を白に変更 */
+                font-family: Arial, sans-serif;
+            }
+            .hero {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                background-color: #FFFFFF;
+            }
+            .hero-logo {
+                max-width: 300px; /* ロゴの最大幅を設定 */
+                max-height: 200px; /* ロゴの最大高さを設定 */
+                width: auto;
+                height: auto;
+            }
+            .blog-list {
+                margin-top: 20px;
+                text-align: center;
+                padding: 20px;
+            }
+            .blog-list-header {
+                font-size: 36px;
+                margin-bottom: 20px;
+            }
+            .blog-list-items {
+                list-style: none;
+                padding: 0;
+            }
+            .blog-list-item {
+                margin: 5px 0;
+            }
+            .blog-list-link {
+                text-decoration: none;
+                color: #007BFF;
+            }
+            .blog-list-link:hover {
+                text-decoration: underline;
+            }
+            .blog-list-title {
+                font-size: 18px;
+                font-weight: bold;
+                margin: 0;
+                color: #333333;
+            }
+            .footer {
+                text-align: center;
+                padding: 10px;
+                background-color: #F8F9FA;
+                font-size: 14px;
+                color: #6C757D;
+                position: relative;
+                bottom: 0;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body class="body">
+        <section class="hero">
+            <img src="/images/logo.png" alt="合同会社ふふむのロゴ" class="hero-logo" />
+        </section>
+        <section class="blog-list">
+            <h2 class="blog-list-header">お知らせ</h2>
+            <ul class="blog-list-items">
+                {posts.map(post => (
+                    <li class="blog-list-item">
+                        <a href={`/blog/${post.id}/`} class="blog-list-link">
+                            <h4 class="blog-list-title">{post.data.title}</h4>
+                            <p class="date">
+                                <FormattedDate date={post.data.pubDate} />
+                            </p>
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </section>
+        <Footer />
+    </body>
+</html>

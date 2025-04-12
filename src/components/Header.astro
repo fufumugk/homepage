@@ -1,0 +1,59 @@
+---
+import HeaderLink from './HeaderLink.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<header class="header">
+	<nav class="header-nav">
+		<h2 class="header-logo">
+			<a href="/" class="header-logo-link">
+				<img src="/images/logo.png" width="150px" alt="{SITE_TITLE}" />
+			</a>
+		</h2>
+	</nav>
+</header>
+<style>
+	.header {
+		margin: 0;
+		padding: 0 1em;
+		background: white;
+		box-shadow: 0 2px 8px rgba(var(--black), 5%);
+	}
+	.header-logo {
+		padding: 10px;
+		margin: 0;
+		font-size: 1em;
+		max-width: 150px; /* ロゴの最大幅を設定 */
+		max-height: 59px; /* ロゴの最大幅を設定 */
+		width: auto;
+		height: auto;
+	}
+	.header-logo-link,
+	.header-logo-link.active {
+		text-decoration: none;
+	}
+	.header-nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.header-nav a {
+		padding: 1em 0.5em;
+		color: var(--black);
+		border-bottom: 4px solid transparent;
+		text-decoration: none;
+	}
+	.header-nav a.active {
+		text-decoration: none;
+		border-bottom-color: var(--accent);
+	}
+	.social-links,
+	.social-links a {
+		display: flex;
+	}
+	@media (max-width: 720px) {
+		.social-links {
+			display: none;
+		}
+	}
+</style>

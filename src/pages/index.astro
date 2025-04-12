@@ -18,9 +18,10 @@ const posts = (await getCollection('blog')).sort(
         <style>
             .body {
                 margin: 0;
-                background-color: #FFFFFF; /* 背景色を白に変更 */
+                background-color: #FFFFFF;
                 font-family: Arial, sans-serif;
             }
+
             .hero {
                 display: flex;
                 justify-content: center;
@@ -28,41 +29,50 @@ const posts = (await getCollection('blog')).sort(
                 min-height: 100vh;
                 background-color: #FFFFFF;
             }
+
             .hero-logo {
-                max-width: 300px; /* ロゴの最大幅を設定 */
-                max-height: 200px; /* ロゴの最大高さを設定 */
+                max-width: 300px;
+                max-height: 200px;
                 width: auto;
                 height: auto;
             }
+
             .blog-list {
                 margin-top: 20px;
                 text-align: center;
                 padding: 20px;
             }
+
             .blog-list-header {
                 font-size: 36px;
                 margin-bottom: 20px;
             }
+
             .blog-list-items {
                 list-style: none;
                 padding: 0;
             }
+
             .blog-list-item {
                 margin: 5px 0;
             }
+
             .blog-list-link {
                 text-decoration: none;
                 color: #007BFF;
+
+                &:hover {
+                    text-decoration: underline;
+                }
             }
-            .blog-list-link:hover {
-                text-decoration: underline;
-            }
+
             .blog-list-title {
                 font-size: 18px;
                 font-weight: bold;
                 margin: 0;
                 color: #333333;
             }
+
             .footer {
                 text-align: center;
                 padding: 10px;
@@ -72,6 +82,44 @@ const posts = (await getCollection('blog')).sort(
                 position: relative;
                 bottom: 0;
                 width: 100%;
+            }
+
+            .company-overview-section {
+                margin: 40px auto;
+                padding: 20px;
+                max-width: 800px;
+                background-color: #F9F9F9;
+                border: 1px solid #DDD;
+                border-radius: 8px;
+
+                h2 {
+                    font-size: 28px;
+                    text-align: center;
+                    margin-bottom: 20px;
+                    color: #333;
+                }
+
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+
+                    th,
+                    td {
+                        padding: 10px;
+                        text-align: left;
+                        border-bottom: 1px solid #DDD;
+                    }
+
+                    th {
+                        background-color: #F1F1F1;
+                        font-weight: bold;
+                        color: #555;
+                    }
+
+                    td {
+                        color: #333;
+                    }
+                }
             }
         </style>
     </head>
@@ -94,23 +142,23 @@ const posts = (await getCollection('blog')).sort(
                 ))}
             </ul>
         </section>
-          <section id="company-overview">
-    <h2>企業概要</h2>
-    <table>
-      <tr>
-        <th>法人名</th>
-        <td>合同会社ふふむ</td>
-      </tr>
-      <tr>
-        <th>設立年月日</th>
-        <td>2025年3月3日</td>
-      </tr>
-      <tr>
-        <th>住所</th>
-        <td>〒220-0004 横浜市⻄区北幸二丁目10番48号むつみビル3階</td>
-      </tr>
-    </table>
-  </section>
+        <section id="company-overview" class="company-overview-section">
+            <h2>企業概要</h2>
+            <table>
+                <tr>
+                    <th>法人名</th>
+                    <td>合同会社ふふむ</td>
+                </tr>
+                <tr>
+                    <th>設立年月日</th>
+                    <td>2025年3月3日</td>
+                </tr>
+                <tr>
+                    <th>住所</th>
+                    <td>〒220-0004 横浜市⻄区北幸二丁目10番48号むつみビル3階</td>
+                </tr>
+            </table>
+        </section>
         <Footer />
     </body>
 </html>

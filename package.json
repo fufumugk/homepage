@@ -2,10 +2,6 @@
   "name": "astro",
   "type": "module",
   "version": "2.2.1",
-  "workspaces": [
-    "frontend",
-    "contact-worker"
-  ],
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",

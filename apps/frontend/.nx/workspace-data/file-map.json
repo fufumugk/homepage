@@ -1,0 +1,163 @@
+{
+  "version": "6.0",
+  "nxVersion": "20.8.2",
+  "pathMappings": {},
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {
+      "astro": [
+        {
+          "file": "README.md",
+          "hash": "18034108143068351184"
+        },
+        {
+          "file": "astro.config.mjs",
+          "hash": "15310207948281153637"
+        },
+        {
+          "file": "nx.json",
+          "hash": "18336426213955174907"
+        },
+        {
+          "file": "package-lock.json",
+          "hash": "18293532243091052119"
+        },
+        {
+          "file": "package.json",
+          "hash": "11967695924932862807",
+          "deps": [
+            "npm:typescript",
+            "npm:@astrojs/mdx",
+            "npm:@astrojs/rss",
+            "npm:@astrojs/sitemap"
+          ]
+        },
+        {
+          "file": "public/blog-placeholder-1.jpg",
+          "hash": "14870595484608090481"
+        },
+        {
+          "file": "public/blog-placeholder-2.jpg",
+          "hash": "17355853872484342069"
+        },
+        {
+          "file": "public/blog-placeholder-3.jpg",
+          "hash": "16843772921992678946"
+        },
+        {
+          "file": "public/blog-placeholder-4.jpg",
+          "hash": "2278600479994227744"
+        },
+        {
+          "file": "public/blog-placeholder-5.jpg",
+          "hash": "15158153735084498305"
+        },
+        {
+          "file": "public/blog-placeholder-about.jpg",
+          "hash": "11726688546249052525"
+        },
+        {
+          "file": "public/favicon.svg",
+          "hash": "17021980542885809075"
+        },
+        {
+          "file": "public/fonts/atkinson-bold.woff",
+          "hash": "13530054717231114867"
+        },
+        {
+          "file": "public/fonts/atkinson-regular.woff",
+          "hash": "665555906637016849"
+        },
+        {
+          "file": "public/images/favicon.ico",
+          "hash": "10902783583705809616"
+        },
+        {
+          "file": "public/images/logo-rectangle.png",
+          "hash": "12370027670461176608"
+        },
+        {
+          "file": "public/images/logo-with-back.png",
+          "hash": "8765818797961628984"
+        },
+        {
+          "file": "public/images/logo.png",
+          "hash": "15438944738994491274"
+        },
+        {
+          "file": "public/zoho-domain-verification.html",
+          "hash": "5796939676243964349"
+        },
+        {
+          "file": "src/components/BaseHead.astro",
+          "hash": "1551232946654559514"
+        },
+        {
+          "file": "src/components/Footer.astro",
+          "hash": "17776193507687527241"
+        },
+        {
+          "file": "src/components/FormattedDate.astro",
+          "hash": "141732236307998625"
+        },
+        {
+          "file": "src/components/Header.astro",
+          "hash": "17239766882090439739"
+        },
+        {
+          "file": "src/components/HeaderLink.astro",
+          "hash": "8070894205946264087"
+        },
+        {
+          "file": "src/consts.ts",
+          "hash": "1801747699846549232"
+        },
+        {
+          "file": "src/content.config.ts",
+          "hash": "847726490520725606"
+        },
+        {
+          "file": "src/content/blog/first-post.md",
+          "hash": "10642005563889667518"
+        },
+        {
+          "file": "src/content/blog/small-business-it-setup.md",
+          "hash": "14775047374638062733"
+        },
+        {
+          "file": "src/layouts/BlogPost.astro",
+          "hash": "11582653840838785624"
+        },
+        {
+          "file": "src/pages/about.astro",
+          "hash": "14063953738910867881"
+        },
+        {
+          "file": "src/pages/blog/[...slug].astro",
+          "hash": "7937631506418256177"
+        },
+        {
+          "file": "src/pages/blog/index.astro",
+          "hash": "13513438412658597913"
+        },
+        {
+          "file": "src/pages/index.astro",
+          "hash": "8626117891008445970"
+        },
+        {
+          "file": "src/pages/rss.xml.js",
+          "hash": "15751401950839436604"
+        },
+        {
+          "file": "src/styles/global.css",
+          "hash": "16024217968407706786"
+        },
+        {
+          "file": "tsconfig.json",
+          "hash": "1313335894046373010"
+        }
+      ]
+    },
+    "nonProjectFiles": []
+  }
+}

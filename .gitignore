@@ -26,3 +26,6 @@ pnpm-debug.log*
 .nx/installation
 .nx/cache
 .nx/workspace-data
+
+.wrangler
+.dev.vars

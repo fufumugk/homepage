@@ -1,0 +1,9 @@
+name = "decap-proxy"
+main = "src/index.ts"
+compatibility_date = "2024-04-30"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+# Set these in the Cloudflare dashboard or via wrangler secrets
+# CLIENT_ID = "your github client id"
+# CLIENT_SECRET = "your github client secret"

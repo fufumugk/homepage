@@ -24,10 +24,11 @@ const handleAuth = async (url: URL, env: Env) => {
     return new Response('Invalid provider', { status: 400 });
   }
 
+
   const oauth2 = createOAuth(env);
   const authorizationUri = oauth2.authorizeURL({
-    redirect_uri: `https://${url.hostname}/callback?provider=github`,
-    scope: 'public_repo,user',
+    redirect_uri: `${url.protocol}//${url.hostname}${url.port ? `:${url.port}` : ''}/callback?provider=github`,
+    scope: 'repo,user',
     state: randomBytes(4).toString('hex'),
   });
 
@@ -74,7 +75,7 @@ const handleCallback = async (url: URL, env: Env) => {
   const oauth2 = createOAuth(env);
   const accessToken = await oauth2.getToken({
     code,
-    redirect_uri: `https://${url.hostname}/callback?provider=github`,
+    redirect_uri: `${url.protocol}//${url.hostname}${url.port ? `:${url.port}` : ''}/callback?provider=github`,
   });
   return callbackScriptResponse('success', accessToken);
 };

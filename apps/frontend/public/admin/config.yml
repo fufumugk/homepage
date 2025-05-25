@@ -2,6 +2,8 @@ backend:
   name: github
   repo: fufumugk/homepage # Path to your GitHub repository
   branch: develop # optional, defaults to master
+  # base_url: "http://127.0.0.1:8787" # optional, defaults to the root of the repo
+  base_url: "https://decap.fufumu.jp" # optional, defaults to the root of the repo
 media_folder: "apps/frontend/public/images/uploads"
 public_folder: "/images/uploads"
 collections:

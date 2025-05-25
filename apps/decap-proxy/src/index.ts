@@ -1,73 +1,93 @@
-export interface Env {
-  CLIENT_ID: string;
-  CLIENT_SECRET: string;
+import { randomBytes } from "node:crypto"; // Ensure crypto is available in the environment
+import { OAuthClient } from './oauth';
+
+interface Env {
+  GITHUB_OAUTH_ID: string;
+  GITHUB_OAUTH_SECRET: string;
 }
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "Content-Type",
-  "Access-Control-Allow-Methods": "POST, OPTIONS"
+const createOAuth = (env: Env) => {
+  return new OAuthClient({
+    id: env.GITHUB_OAUTH_ID,
+    secret: env.GITHUB_OAUTH_SECRET,
+    target: {
+      tokenHost: 'https://github.com',
+      tokenPath: '/login/oauth/access_token',
+      authorizePath: '/login/oauth/authorize',
+    },
+  });
+};
+
+const handleAuth = async (url: URL, env: Env) => {
+  const provider = url.searchParams.get('provider');
+  if (provider !== 'github') {
+    return new Response('Invalid provider', { status: 400 });
+  }
+
+  const oauth2 = createOAuth(env);
+  const authorizationUri = oauth2.authorizeURL({
+    redirect_uri: `https://${url.hostname}/callback?provider=github`,
+    scope: 'public_repo,user',
+    state: randomBytes(4).toString('hex'),
+  });
+
+  return new Response(null, { headers: { location: authorizationUri }, status: 301 });
+};
+
+const callbackScriptResponse = (status: string, token: string) => {
+  return new Response(
+    `
+<html>
+<head>
+	<script>
+		const receiveMessage = (message) => {
+			window.opener.postMessage(
+				'authorization:github:${status}:${JSON.stringify({ token })}',
+				'*'
+			);
+			window.removeEventListener("message", receiveMessage, false);
+		}
+		window.addEventListener("message", receiveMessage, false);
+		window.opener.postMessage("authorizing:github", "*");
+	</script>
+	<body>
+		<p>Authorizing Decap...</p>
+	</body>
+</head>
+</html>
+`,
+    { headers: { 'Content-Type': 'text/html' } }
+  );
+};
+
+const handleCallback = async (url: URL, env: Env) => {
+  const provider = url.searchParams.get('provider');
+  if (provider !== 'github') {
+    return new Response('Invalid provider', { status: 400 });
+  }
+
+  const code = url.searchParams.get('code');
+  if (!code) {
+    return new Response('Missing code', { status: 400 });
+  }
+
+  const oauth2 = createOAuth(env);
+  const accessToken = await oauth2.getToken({
+    code,
+    redirect_uri: `https://${url.hostname}/callback?provider=github`,
+  });
+  return callbackScriptResponse('success', accessToken);
 };
 
 export default {
-  async fetch(request: Request, env: Env): Promise<Response> {
-    if (request.method === "OPTIONS") {
-      return new Response(null, { status: 204, headers: corsHeaders });
-    }
-
+  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
-
-    if (request.method === "POST" && url.pathname === "/auth") {
-      let code: string | undefined;
-      try {
-        const data = await request.json();
-        code = data.code;
-      } catch (_) {
-        return new Response(JSON.stringify({ error: "invalid request" }), {
-          status: 400,
-          headers: { ...corsHeaders, "Content-Type": "application/json" }
-        });
-      }
-
-      if (!code) {
-        return new Response(JSON.stringify({ error: "missing code" }), {
-          status: 400,
-          headers: { ...corsHeaders, "Content-Type": "application/json" }
-        });
-      }
-
-      const body = JSON.stringify({
-        client_id: env.CLIENT_ID,
-        client_secret: env.CLIENT_SECRET,
-        code
-      });
-
-      const githubResponse = await fetch(
-        "https://github.com/login/oauth/access_token",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json"
-          },
-          body
-        }
-      );
-
-      const resultText = await githubResponse.text();
-      return new Response(resultText, {
-        status: githubResponse.status,
-        headers: {
-          ...corsHeaders,
-          "Content-Type": "application/json"
-        }
-      });
+    if (url.pathname === '/auth') {
+      return handleAuth(url, env);
     }
-
-    if (request.method === "GET" && url.pathname === "/") {
-      return new Response("Decap Proxy", { headers: corsHeaders });
+    if (url.pathname === '/callback') {
+      return handleCallback(url, env);
     }
-
-    return new Response("Not found", { status: 404, headers: corsHeaders });
-  }
+    return new Response('Hello 👋');
+  },
 };

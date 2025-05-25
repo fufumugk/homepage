@@ -7,7 +7,10 @@
     "deploy": "wrangler publish"
   },
   "devDependencies": {
-    "wrangler": "^3.20.0",
-    "typescript": "^5.0.0"
+    "@cloudflare/vitest-pool-workers": "^0.1.0",
+    "@cloudflare/workers-types": "^4.20250525.0",
+    "@types/node": "^22.15.21",
+    "typescript": "^5.8.3",
+    "wrangler": "^4.16.1"
   }
 }
